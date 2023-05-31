@@ -2,7 +2,8 @@
 
 ## Objetivo general
 
-    Aplicar todos los conocimientos vistos en clase para levantar esta API desde 0, mas consideraciones de seguridad y para lanzar a producción en Railway / render.
+Aplicar todos los conocimientos vistos en clase para levantar esta API desde 0,
+mas consideraciones de seguridad y para lanzar a producción en Railway / render.
 
 ### El proyecto debe cumplir con los siguientes puntos
 
