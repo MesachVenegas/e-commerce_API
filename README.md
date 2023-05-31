@@ -11,11 +11,11 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
 
 2. Se deben crear los siguientes modelos:
 
-    - [ ] User
-    - [ ] Product
-    - [ ] Car
+    - [x] Users
+    - [x] Products
+    - [x] Carts
+    - [x] Orders
     - [ ] ProductInCart
-    - [ ] Order
     - [ ] ProductInOrder
 
 3. Debe contener los siguientes puntos:
