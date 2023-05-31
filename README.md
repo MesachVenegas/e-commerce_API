@@ -38,7 +38,7 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
 
     - [ ] Generar un endpoint para recuperar contraseña.
 
-> 💡 Tip: Para recuperar una contraseña un usuario llena un formulario con donde solamente manda su correo electrónico. Posteriomente llega un mensaje a su correo electrónico con un enlace que incluye un token.Este enlace lo lleva a una pagina que tiene un formulario para restablecer la contraseña. Cuando da enviar, envía la contraseña nueva y el token del enlace.
+> 💡 Tip: Para recuperar una contraseña un usuario llena un formulario donde solamente manda su correo electrónico. Posteriomente llega un mensaje a su correo electrónico con un enlace que incluye un token. Este enlace lo lleva a una pagina que tiene un formulario para restablecer la contraseña. Cuando da enviar, envía la contraseña nueva y el token del enlace.
 
 ## Diseño de la base de datos
 
