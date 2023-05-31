@@ -48,7 +48,7 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
 
 Para iniciar a trabajar con nuestro API es necesario primero establecer algunos ajustes, primero hay que establecer nuestras variables de entorno, entre las cuales esta las que nos permitirán conectarnos a la base de datos
 
-|Variable |Description                           |
+|Variable |Description                          |
 |:-------:|:------------------------------------|
 |`DB_HOST`|Host desde el cual se accede a la DDBB|
 |`DB_NAME`|Nombre de la base de datos a generar|
@@ -56,11 +56,20 @@ Para iniciar a trabajar con nuestro API es necesario primero establecer algunos 
 |`DB_USER`|Nombre de usuario con el que se accede|
 |`DB_PASS`|Password para acceder a postgres|
 
+Primero inicializamos sequelize-cli para ello ejecutamos:
+
+```npm
+npm run prepare
+```
+
+Una vez inicializado procedemos a la creación de nuestra base de datos para ello correremos el siguiente comando:
+
+```npm
 npm run database
+```
 
 "start": "node ./src/app.js",
 "dev": "nodemon ./src/app.js",
-"prepare": "npx sequelize-cli init",
 "database": "npx sequelize-cli db:create ",
 "drop": "npx sequelize-cli db:drop",
 "migration": "npx sequelize-cli db:migrate"
