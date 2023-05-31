@@ -15,8 +15,8 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
     - [x] Products
     - [x] Carts
     - [x] Orders
-    - [ ] ProductInCart
-    - [ ] ProductInOrder
+    - [x] ProductInCart
+    - [x] ProductInOrder
 
 3. Debe contener los siguientes puntos:
 
@@ -43,5 +43,28 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
 ## Diseño de la base de datos
 
 ![diagram](./Public//e-commerce_diagram.png)
+
+## Iniciando la configuración
+
+Para iniciar a trabajar con nuestro API es necesario primero establecer algunos ajustes, primero hay que establecer nuestras variables de entorno, entre las cuales esta las que nos permitirán conectarnos a la base de datos
+
+<p sty;e="text-align: center;">
+|Variable |Description                           |
+|:-------:|:------------------------------------:|
+|`DB_HOST`|host desde el cual se accede a la DDBB|
+|`DB_NAME`|Nombre de la base de datos a generar|
+|`DB_PORT`|Puerto de conexión a la DDBB|
+|`DB_USER`|Nombre de usuario con el que se accede|
+|`DB_PASS`|password para acceder a postgres|
+</p>
+
+npm run database
+
+"start": "node ./src/app.js",
+"dev": "nodemon ./src/app.js",
+"prepare": "npx sequelize-cli init",
+"database": "npx sequelize-cli db:create ",
+"drop": "npx sequelize-cli db:drop",
+"migration": "npx sequelize-cli db:migrate"
 
 [⭡backtotop](#proyecto---final)
