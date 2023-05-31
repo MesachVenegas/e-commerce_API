@@ -48,15 +48,13 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
 
 Para iniciar a trabajar con nuestro API es necesario primero establecer algunos ajustes, primero hay que establecer nuestras variables de entorno, entre las cuales esta las que nos permitirán conectarnos a la base de datos
 
-<p sty;e="text-align: center;">
 |Variable |Description                           |
-|:-------:|:------------------------------------:|
-|`DB_HOST`|host desde el cual se accede a la DDBB|
+|:-------:|:------------------------------------|
+|`DB_HOST`|Host desde el cual se accede a la DDBB|
 |`DB_NAME`|Nombre de la base de datos a generar|
 |`DB_PORT`|Puerto de conexión a la DDBB|
 |`DB_USER`|Nombre de usuario con el que se accede|
-|`DB_PASS`|password para acceder a postgres|
-</p>
+|`DB_PASS`|Password para acceder a postgres|
 
 npm run database
 
