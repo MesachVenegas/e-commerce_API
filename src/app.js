@@ -11,5 +11,5 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.listen(PORT, () => {
-    console.log(`Servidor en linea y escuchando en el puerto PORT`)
+    console.log(`Servidor en linea y escuchando en el puerto  ${PORT}`)
 });
