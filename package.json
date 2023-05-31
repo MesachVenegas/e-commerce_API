@@ -6,6 +6,7 @@
     "scripts": {
         "start": "node ./src/app.js",
         "dev": "nodemon ./src/app.js",
+        "prepare": "npx sequelize-cli init",
         "database": "npx sequelize-cli db:create ",
         "drop": "npx sequelize-cli db:drop",
         "migration": "npx sequelize-cli db:migrate"
