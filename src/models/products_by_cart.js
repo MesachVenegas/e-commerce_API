@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Products_by_cart extends Model {
+  class products_by_cart extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // products in cart tiene muchos productos
-      Products_by_cart.hasMany(models.Products, { foreignKey: 'productId' });
+      products_by_cart.hasMany(models.products, { foreignKey: 'productId' });
       // products in cart pertenece a un carrito.
-      Products_by_cart.belongsTo(models.Carts, {
-        foreignKey: 'id',
-        targetKey: 'cartId'
+      products_by_cart.belongsTo(models.carts, {
+        foreignKey: 'cartId',
+        targetKey: 'id'
       })
     }
   }
-  Products_by_cart.init({
+  products_by_cart.init({
     cartId: DataTypes.INTEGER,
     productId: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER,
@@ -27,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'Products_by_cart',
+    modelName: 'products_by_cart',
+    timestamps: false,
   });
-  return Products_by_cart;
+  return products_by_cart;
 };

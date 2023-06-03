@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Products_by_order extends Model {
+  class products_by_order extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,15 +11,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // products in order tiene muchos productos.
-      Products_by_order.hasMany(models.Products, { foreignKey: 'productsId' });
+      products_by_order.hasMany(models.products, { foreignKey: 'productsId' });
       // products in order pertenece a una orden.
-      Products_by_order.belongsTo(models.Orders, {
-        foreignKey: 'id',
-        targetKey: 'orderId',
+      products_by_order.belongsTo(models.orders, {
+        foreignKey: 'orderId',
+        targetKey: 'id',
       })
     }
   }
-  Products_by_order.init({
+  products_by_order.init({
     orderId: DataTypes.INTEGER,
     productId: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER,
@@ -27,7 +27,8 @@ module.exports = (sequelize, DataTypes) => {
     status: DataTypes.BOOLEAN
   }, {
     sequelize,
-    modelName: 'Products_by_order',
+    modelName: 'products_by_order',
+    timestamps: false,
   });
-  return Products_by_order;
+  return products_by_order;
 };
