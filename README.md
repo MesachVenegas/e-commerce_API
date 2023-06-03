@@ -17,10 +17,11 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
     - [x] Orders
     - [x] ProductInCart
     - [x] ProductInOrder
+    - [x] Establecer las relaciones entre los modelos
 
 3. Debe contener los siguientes puntos:
 
-    - [ ] Crear usuarios y encriptar sus contraseñas con Bcrypt
+    - [x] Crear usuarios y encriptar sus contraseñas con Bcrypt
     - [ ] Iniciar sesión y generar JWT
     - [ ] Editar un usuario ( username y avatar )
     - [ ] Crear la validaciones pertinentes para cada endpoint ( express validator)
@@ -55,23 +56,5 @@ Para iniciar a trabajar con nuestro API es necesario primero establecer algunos 
 |`DB_PORT`|Puerto de conexión a la DDBB|
 |`DB_USER`|Nombre de usuario con el que se accede|
 |`DB_PASS`|Password para acceder a postgres|
-
-Primero inicializamos sequelize-cli para ello ejecutamos:
-
-```npm
-npm run prepare
-```
-
-Una vez inicializado procedemos a la creación de nuestra base de datos para ello correremos el siguiente comando:
-
-```npm
-npm run database
-```
-
-"start": "node ./src/app.js",
-"dev": "nodemon ./src/app.js",
-"database": "npx sequelize-cli db:create ",
-"drop": "npx sequelize-cli db:drop",
-"migration": "npx sequelize-cli db:migrate"
 
 [⭡backtotop](#proyecto---final)
