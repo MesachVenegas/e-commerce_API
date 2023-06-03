@@ -30,6 +30,7 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       userId: {
+        field: 'user_id',
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {

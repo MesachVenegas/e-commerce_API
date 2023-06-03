@@ -10,6 +10,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       cartId: {
+        field: 'cart_id',
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -20,6 +21,7 @@ module.exports = {
         onUpdate: 'CASCADE',
       },
       productId: {
+        field: 'product_id',
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {

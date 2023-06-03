@@ -10,10 +10,12 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       totalPrice: {
+        field: 'total_price',
         allowNull: false,
         type: Sequelize.REAL
       },
       userId: {
+        field: 'user_id',
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
@@ -24,6 +26,7 @@ module.exports = {
         onUpdate: 'CASCADE'
       },
       isCompleted: {
+        field: 'is_completed',
         defaultValue: false,
         type: Sequelize.BOOLEAN
       },
