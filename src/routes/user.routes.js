@@ -1,6 +1,6 @@
 const { createUser, getUser, userDelete, logIn, updateAvatar, updateUserName } = require('../controllers/user.controller');
 const { validateCreation } = require('../validators/user.validate');
-const upload = require('../middlewares/imgLoader.middleware');
+const upload = require('../utils/imgLoader');
 const { Router } = require('express')
 const router = Router();
 
