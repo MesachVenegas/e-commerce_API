@@ -23,7 +23,19 @@ const validateCreation = [
     }
 ]
 
+const validateNewUsername = [
+    check('username', 'error on user field validation')
+        .exists().withMessage('The username field did not exist')
+        .trim().notEmpty().withMessage('The username field cannot be empty')
+        .isString().withMessage('The username field must be a string')
+        .isLength({ min: '6' }).withMessage('The username field must be at least 6 characters'),
+    (req, res, next) => {
+        fieldValidate(req, res, next);
+    }
+]
+
 
 module.exports = {
-    validateCreation
+    validateCreation,
+    validateNewUsername,
 };
