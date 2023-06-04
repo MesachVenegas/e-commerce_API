@@ -29,6 +29,11 @@ const login = async (email) => {
     return user;
 }
 
+const setAvatarUrl = async (id, url) => {
+    const user = await users.update(url,{where: {id: id}});
+    return user;
+}
+
 const recoveryPassword = async (id, newPass) => {
     const user = await users.update(newPass, { where: id });
     return user;
@@ -41,4 +46,5 @@ module.exports = {
     destroyUser,
     login,
     recoveryPassword,
+    setAvatarUrl
 };
