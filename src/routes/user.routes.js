@@ -1,8 +1,15 @@
-const { createUser } = require('../controllers/user.controller');
+const { createUser, getUser, userDelete, logIn } = require('../controllers/user.controller');
+const { validateCreation } = require('../validators/user.validate');
 const { Router } = require('express')
 
 const router = Router();
 
-router.post('/users', createUser);
+router.post('/users', validateCreation, createUser);
+
+router.post('/users/login', logIn);
+
+router.get('/users/:id', getUser);
+
+router.delete('/users/:id', userDelete);
 
 module.exports = router
