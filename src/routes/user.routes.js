@@ -1,4 +1,4 @@
-const { createUser, getUser, userDelete, logIn, updateAvatar } = require('../controllers/user.controller');
+const { createUser, getUser, userDelete, logIn, updateAvatar, updateUserName } = require('../controllers/user.controller');
 const { validateCreation } = require('../validators/user.validate');
 const upload = require('../middlewares/imgLoader.middleware');
 const { Router } = require('express')
@@ -13,5 +13,7 @@ router.post('/users/login', logIn);
 router.get('/users/:id', getUser);
 
 router.delete('/users/:id', userDelete);
+
+router.put('/users/:id/profile', updateUserName);
 
 module.exports = router
