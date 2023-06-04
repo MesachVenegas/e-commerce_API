@@ -1,7 +1,7 @@
+const errorRouter = require('./routes/error.routes');
+const apiRouter = require('./routes');
 const express = require('express');
 const morgan = require('morgan');
-const apiRouter = require('./routes')
-const errorRouter = require('./routes/errorRoutes');
 const cors = require('cors');
 require('dotenv').config();
 
