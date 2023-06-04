@@ -14,23 +14,23 @@ const findUser = async (id) => {
     return user;
 }
 
-const updateUser = async (id, newData) => {
-    const user = await users.update(newData, { where: id });
+const updateUsername = async (id, newUserName) => {
+    const user = await users.update(newUserName, { where: { id } });
     return user;
 }
 
 const destroyUser = async (id) => {
-    const user = await users.destroy({ where: {id}});
+    const user = await users.destroy({ where: { id } });
     return user;
 }
 
 const login = async (email) => {
-    const user = await users.findOne({where: {email}});
+    const user = await users.findOne({ where: { email } });
     return user;
 }
 
 const setAvatarUrl = async (id, url) => {
-    const user = await users.update(url,{where: {id: id}});
+    const user = await users.update(url, { where: { id: id } });
     return user;
 }
 
@@ -42,7 +42,7 @@ const recoveryPassword = async (id, newPass) => {
 module.exports = {
     insertUser,
     findUser,
-    updateUser,
+    updateUsername,
     destroyUser,
     login,
     recoveryPassword,
