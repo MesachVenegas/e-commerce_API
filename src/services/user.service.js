@@ -1,4 +1,5 @@
 const UserRepository = require('../repositories/user.repository');
+const { sendWelcomEmail } = require('../utils/sendEmail');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
@@ -8,6 +9,8 @@ class UserServices {
             const { username, email, password } = data;
             const hashed = await bcrypt.hash(password, 10);
             const user = await UserRepository.insertUser({ username, email, password: hashed });
+            const token = 'token'
+            sendWelcomEmail(user.email, { username: user.username, verifyToken: token });
             return user;
         } catch (error) {
             throw error;
