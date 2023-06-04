@@ -3,7 +3,7 @@ const types = ['image/png', 'image/jpeg', 'image/webp']
 
 const upload = multer({
     storage: multer.diskStorage({
-        destination: './src/filesUpload',
+        destination: './src/users/avatars',
         filename: (req, file, cb) => {
             const date = Date.now();
             cb(null, `${date}_${file.originalname}`);
