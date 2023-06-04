@@ -77,6 +77,15 @@ class UserServices {
         }
     }
 
+    static async loadAvatar(id, file) {
+        try {
+            const response = await UserRepository.setAvatarUrl(id, { url: file.path });
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 }
 
 module.exports = UserServices;
