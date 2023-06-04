@@ -86,6 +86,14 @@ class UserServices {
         }
     }
 
+    static async editUsername(id, username) {
+        try {
+            const response = await UserRepository.updateUsername(id, username);
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 module.exports = UserServices;
