@@ -23,7 +23,7 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
 
     - [x] Crear usuarios y encriptar sus contraseñas con Bcrypt
     - [x] Iniciar sesión y generar JWT
-    - [ ] Editar un usuario ( username y avatar )
+    - [x] Editar un usuario ( username y avatar )
     - [ ] Crear la validaciones pertinentes para cada endpoint ( express validator)
     - [ ] Obtener todos los productos que su cantidad sea mayor que 0, debe incluir el nombre del usuario quien esta vendiendo el producto
     - [ ] Crear un nuevo producto, incluyendo una imagen
