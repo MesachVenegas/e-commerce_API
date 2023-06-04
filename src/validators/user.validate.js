@@ -1,10 +1,6 @@
 const fieldValidate = require('../utils/fieldValidator');
 const { check } = require('express-validator');
 
-/*
-    imgUrl varchar [default: 'none']
-}
-*/
 const validateCreation = [
     check('username', 'error on user field validation')
         .exists().withMessage('The username field did not exist')
@@ -21,7 +17,7 @@ const validateCreation = [
         .trim().notEmpty().withMessage('The password field cannot be empty')
         .isString().withMessage('The password field must be a string')
         .isLength({ min: '6', max: '16' }).withMessage('The password field must be between 6 and 16 characters')
-        .matches(/^[A-Za-z0-9 .,'!&]+$/),
+        .matches(/^[A-Za-z0-9 .,'!&]+$/).withMessage('The password field must be numbers,letters or one of this characters !&'),
     (req, res, next) =>{
         fieldValidate(req, res, next);
     }
