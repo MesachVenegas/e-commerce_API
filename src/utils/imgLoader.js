@@ -1,9 +1,10 @@
 const multer = require('multer');
+const path = require('path');
 const types = ['image/png', 'image/jpeg', 'image/webp']
 
 const upload = multer({
     storage: multer.diskStorage({
-        destination: './src/users/avatars',
+        destination: path.join(__dirname, '../../src/users/avatars'),
         filename: (req, file, cb) => {
             const date = Date.now();
             cb(null, `${date}_${file.originalname}`);
