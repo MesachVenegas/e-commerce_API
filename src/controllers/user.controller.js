@@ -40,9 +40,21 @@ const logIn = async (req, res, next) => {
     }
 }
 
+const updateAvatar = async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        const file = req.file;
+        await UserService.loadAvatar(id, file);
+        res.status(200).send();
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     createUser,
     getUser,
     userDelete,
+    updateAvatar,
     logIn
 };
