@@ -22,7 +22,7 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
 3. Debe contener los siguientes puntos:
 
     - [x] Crear usuarios y encriptar sus contraseñas con Bcrypt
-    - [ ] Iniciar sesión y generar JWT
+    - [x] Iniciar sesión y generar JWT
     - [ ] Editar un usuario ( username y avatar )
     - [ ] Crear la validaciones pertinentes para cada endpoint ( express validator)
     - [ ] Obtener todos los productos que su cantidad sea mayor que 0, debe incluir el nombre del usuario quien esta vendiendo el producto
