@@ -17,7 +17,7 @@ const sendNewEmail = (email, doc, attachments, subject) => {
 const sendWelcomEmail = async (email, data) => {
     const filePath = path.join(__dirname, '../views/welcome.ejs');
     const doc = await ejs.renderFile(filePath, data);
-    const subject = "Welcome to E-commerce Services";
+    const subject = `Welcome to NetShop ${data.username}!`;
     const attachments = [
         {
             filename: "illo_welcome_1.png",
