@@ -6,7 +6,11 @@ const insertUser = async (newUser) => {
 }
 
 const findUser = async (id) => {
-    const user = await users.findByPk(id);
+    const user = await users.findByPk(id, {
+        attributes: {
+            exclude: ['password'],
+        }
+    });
     return user;
 }
 
@@ -16,20 +20,25 @@ const updateUser = async (id, newData) => {
 }
 
 const destroyUser = async (id) => {
-    const user = await users.destroy({ where: id});
+    const user = await users.destroy({ where: {id}});
     return user;
 }
 
-const userLogin = async (email) => {
-    const user = await users.findOne({where: email});
+const login = async (email) => {
+    const user = await users.findOne({where: {email}});
     return user;
 }
 
+const recoveryPassword = async (id, newPass) => {
+    const user = await users.update(newPass, { where: id });
+    return user;
+}
 
 module.exports = {
     insertUser,
     findUser,
     updateUser,
     destroyUser,
-    userLogin
+    login,
+    recoveryPassword,
 };
