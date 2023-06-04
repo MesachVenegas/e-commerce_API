@@ -1,4 +1,5 @@
 const UserRepository = require('../repositories/user.repository');
+const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 class UserServices {
@@ -39,6 +40,43 @@ class UserServices {
             throw error;
         }
     }
+
+    static async userLogin(sessionData) {
+        try {
+            const { reqEmail, reqPassword } = sessionData;
+            const user = await UserRepository.login(reqEmail);
+
+            if (!user) {
+                throw new Error({
+                    status: 404,
+                    error: 'user not found',
+                    message: 'The user could not be found'
+                })
+            }
+
+            const validPass = await bcrypt.compare(reqPassword, user.password);
+
+            if (!validPass) {
+                throw new Error({
+                    status: 400,
+                    name: "Invalid password",
+                    message: 'The password does not match'
+                });
+            }
+            const { id, username, email, url, registeredAt, updatedAt } = user;
+            const userData = { id, username, email, url, registeredAt, updatedAt };
+            const token = jwt.sign(userData, process.env.JWT_KEYWORD, {
+                algorithm: process.env.JWT_ALGORITHM,
+                expiresIn: '1h'
+            })
+
+            userData.token = token;
+            return userData;
+        } catch (error) {
+            throw error;
+        }
+    }
+
 }
 
 module.exports = UserServices;
