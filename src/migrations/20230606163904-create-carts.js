@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('carts', {
+    await queryInterface.createTable('Carts', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,26 +10,32 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        field: 'user_id',
         allowNull: false,
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
         references: {
-          model: 'users',
-          key: 'id'
+          model: "Users",
+          key: "id"
         },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
+        field: "user_id"
       },
       totalPrice: {
-        field: 'total_price',
         defaultValue: 0,
-        type: Sequelize.REAL
+        type: Sequelize.REAL,
+        field: "total_price"
       },
-    }, {
-      timestamps: false,
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      }
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('carts');
+    await queryInterface.dropTable('Carts');
   }
 };

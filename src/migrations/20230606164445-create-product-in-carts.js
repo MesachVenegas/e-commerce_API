@@ -2,37 +2,37 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('products_by_carts', {
+    await queryInterface.createTable('ProductInCarts', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      cartId: {
-        field: 'cart_id',
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'carts',
-          key: 'id'
-        },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
-      },
       productId: {
-        field: 'product_id',
         allowNull: false,
         type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
         references: {
-          model: 'products',
-          key: 'id'
+          model: "Products",
+          key: "id"
         },
-        onDelete: 'CASCADE',
-        onUpdate: 'CASCADE',
+        field: "product_id"
+      },
+      cartId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
+        references: {
+          model: "Carts",
+          key: "id"
+        },
+        field: "cart_id"
       },
       quantity: {
-        defaultValue: 1,
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       price: {
@@ -43,11 +43,19 @@ module.exports = {
         defaultValue: false,
         type: Sequelize.BOOLEAN
       },
-    }, {
-      timestamps: false
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      }
+    },{
+        underscore: true
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('products_by_carts');
+    await queryInterface.dropTable('ProductInCarts');
   }
 };
