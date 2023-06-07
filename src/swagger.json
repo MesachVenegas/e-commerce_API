@@ -1,0 +1,8 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "E-commerce API",
+        "description": "API para la creación de una plataforma de tienda digital mejor conocidas como e-commerce",
+        "version" : "1.0.0"
+    }
+}
