@@ -27,7 +27,7 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
     - [ ] Crear la validaciones pertinentes para cada endpoint ( express validator)
     - [x] Obtener todos los productos que su cantidad sea mayor que 0, debe incluir el nombre del usuario quien esta vendiendo el producto
     - [x] Crear un nuevo producto, incluyendo una imagen
-    - [ ] Poder editar la descripción de un producto
+    - [x] Poder editar la descripción de un producto
     - [ ] Agregar un producto al carrito
     - [ ] Mostrar todos los productos que el usuario tiene hasta el momento en su carrito
     - [ ] Realizar una compra, todos los productos en el carrito se marcan como comprados y el carrito cambia a status ‘purchased’
