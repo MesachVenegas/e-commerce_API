@@ -17,13 +17,24 @@ const getAllProductsInStock = async () => {
         },
         include: {
             model: Users,
-            attributes: { exclude: ['password']}
+            attributes: { exclude: ['password'] }
         }
     });
     return products;
 }
 
+const insertImagesUrl = async (id, images) => {
+    const loaded = await Products.update({
+        img: images
+    }, {
+        where: { id }
+    });
+    return loaded;
+}
+
+
 module.exports = {
     addNewProduct,
+    insertImagesUrl,
     getAllProductsInStock
 };
