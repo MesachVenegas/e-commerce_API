@@ -30,8 +30,20 @@ const getProducts = async (req, res, next) => {
     }
 }
 
+const editProducts = async (req, res, next) => {
+    try {
+        const {id} = req.params;
+        const data = req.body;
+        await ProductServices.editProduct(id, data);
+        res.status(204).send();
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
     newItemData,
     getProducts,
-    loadThumbail
+    loadThumbail,
+    editProducts
 };
