@@ -1,4 +1,4 @@
-const { addNewProduct, getAllProductsInStock, insertImagesUrl } = require('../repositories/products.repository');
+const { addNewProduct, getAllProductsInStock, insertImagesUrl, editItem } = require('../repositories/products.repository');
 
 class ProductServices {
     static async addProduct(data) {
@@ -27,6 +27,22 @@ class ProductServices {
             const urls = images.map(image => image.path)
             console.log(urls)
             const response = await insertImagesUrl(id, urls);
+            return response;
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    static async editProduct(id, fields) {
+        try {
+            const data = {};
+            for(let field in fields) {
+                if(fields[field].toString().length > 0){
+                    console.log(field)
+                    data[field] = fields[field]
+                }
+            }
+            const response = await editItem(id, data);
             return response;
         } catch (error) {
             throw error;
