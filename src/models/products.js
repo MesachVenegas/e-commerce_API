@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
         stock: DataTypes.INTEGER,
         available: DataTypes.BOOLEAN,
         userId: { type: DataTypes.INTEGER, field: "user_id" },
-        img: DataTypes.STRING
+        img: DataTypes.ARRAY(DataTypes.STRING)
     }, {
         sequelize,
         modelName: 'Products',
