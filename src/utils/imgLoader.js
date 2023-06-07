@@ -28,7 +28,7 @@ const uploadAvatar = multer({
 
 const uploadProductImgs = multer({
     storage: multer.diskStorage({
-        destination: path.join(__dirname, '../../src/images/prodcts'),
+        destination: path.join(__dirname, '../../src/images/products'),
         filename: (req, file, cb) => {
             const date = Date.now();
             cb(null, `${date}_${file.originalname}`);
@@ -40,13 +40,13 @@ const uploadProductImgs = multer({
             cb({
                 status: 400,
                 name: 'File type unsupported',
-                message: `Invalid type, only allowed ${types.join(', ')} mimetypes`,
+                message: `Invalid type, only allowed ${types.join(', ')} mimetypes or is empty`,
             }, false)
         } else {
             cb(null, true);
         }
     }
-}).array('images', 5);
+}).array('images', 10);
 
 module.exports = {
     uploadAvatar,
