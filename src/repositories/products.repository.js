@@ -32,9 +32,16 @@ const insertImagesUrl = async (id, images) => {
     return loaded;
 }
 
+const editItem = async (id, item) => {
+    const newData = await Products.update(item, {
+        where: { id },
+    })
+    return newData;
+}
 
 module.exports = {
     addNewProduct,
     insertImagesUrl,
+    editItem,
     getAllProductsInStock
 };
