@@ -10,6 +10,17 @@ const newItemData = async (req, res, next) => {
     }
 }
 
+const loadThumbail = async (req, res, next) => {
+    try {
+        const files = req.files;
+        const { id } = req.params;
+        await ProductServices.loadImages(id, files);
+        res.status(204).send();
+    } catch (error) {
+        next(error);
+    }
+}
+
 const getProducts = async (req, res, next) => {
     try {
         const response = await ProductServices.getAllProducts();
@@ -21,5 +32,6 @@ const getProducts = async (req, res, next) => {
 
 module.exports = {
     newItemData,
-    getProducts
+    getProducts,
+    loadThumbail
 };
