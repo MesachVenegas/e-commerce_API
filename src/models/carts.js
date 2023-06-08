@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     class Carts extends Model {
         static associate(models) {
             // Un carrito le pertenece a un usuarios.
-            Carts.belongsTo(models.Users, { foreignKey: "userId", targetKey: "id", as: "users" })
+            Carts.belongsTo(models.Users, { foreignKey: "userId", targetKey: "id" })
             // Un carrito tiene muchos productos
             Carts.belongsToMany(models.Products, { through: "ProductInCarts", foreignKey: "cartId" })
             Carts.belongsToMany(models.Products, { through: "ProductInCarts", foreignKey: "orderId" })
