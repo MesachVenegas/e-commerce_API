@@ -1,11 +1,14 @@
 const { Carts } = require('../models');
 
-const getCart = async () => {
-    return await Carts.findAll();
+const getCart = async (id) => {
+    return await Carts.findAll({ where: { id: id}});
 }
 
 const createUserCart = async (data) => {
-    return await Carts.create(data);
+    console.log(data);
+    const cart = "await"
+    // const cart = await Carts.create(data);
+    return cart;
 }
 
 const updateTotal = async (id, data) => {
