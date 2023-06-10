@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
     }, {
         sequelize,
         modelName: 'Carts',
+        timestamps: false,
     });
     return Carts;
 };
