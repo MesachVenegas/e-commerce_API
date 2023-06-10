@@ -11,8 +11,6 @@ module.exports = {
                 stock: 10,
                 available: true,
                 user_id: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
             },
             {
                 name: "Aourus Gaming Elite OC RX580 8Gb Dual Fan",
@@ -21,8 +19,6 @@ module.exports = {
                 stock: 2,
                 available: true,
                 user_id: 1,
-                createdAt: new Date(),
-                updatedAt: new Date()
             },
             {
                 name: "Samsung evo 970 nvem 1T 280",
@@ -31,8 +27,6 @@ module.exports = {
                 stock: 0,
                 available: false,
                 user_id: 2,
-                createdAt: new Date(),
-                updatedAt: new Date()
             },
             {
                 name: "Cooler Master MasterWatt 600W 80 Plus Bronze",
@@ -41,8 +35,6 @@ module.exports = {
                 stock: 2,
                 available: false,
                 user_id: 2,
-                createdAt: new Date(),
-                updatedAt: new Date()
             },
         ])
     },
