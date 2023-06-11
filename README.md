@@ -28,8 +28,8 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
     - [x] Obtener todos los productos que su cantidad sea mayor que 0, debe incluir el nombre del usuario quien esta vendiendo el producto
     - [x] Crear un nuevo producto, incluyendo una imagen
     - [x] Poder editar la descripción de un producto
-    - [ ] Agregar un producto al carrito
-    - [ ] Mostrar todos los productos que el usuario tiene hasta el momento en su carrito
+    - [x] Agregar un producto al carrito
+    - [x] Mostrar todos los productos que el usuario tiene hasta el momento en su carrito
     - [ ] Realizar una compra, todos los productos en el carrito se marcan como comprados y el carrito cambia a status ‘purchased’
     - [ ] Ver todas las ordenes del usuario
     - [ ] Mandar un correo cuando un usuario crea una cuenta y cuando realiza una compra(no hay verificación de email)
