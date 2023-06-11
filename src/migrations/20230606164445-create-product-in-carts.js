@@ -39,7 +39,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.REAL
       },
-      status: {
+      ordered: {
         defaultValue: false,
         type: Sequelize.BOOLEAN
       },

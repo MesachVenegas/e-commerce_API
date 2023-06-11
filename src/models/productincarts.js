@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     cartId: { type: DataTypes.INTEGER, field: "cart_id" },
     quantity: DataTypes.INTEGER,
     price: DataTypes.REAL,
-    status: DataTypes.BOOLEAN
+    ordered: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'ProductInCarts',
