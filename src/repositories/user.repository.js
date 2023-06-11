@@ -1,7 +1,9 @@
-const { Users } = require('../models');
+const { Users, Products, Carts } = require('../models');
+const { createUserCart } = require('./cart.repository');
 
 const insertUser = async (newUser) => {
     const user = await Users.create(newUser);
+    await createUserCart({userId: user.id});
     return user;
 }
 
@@ -9,7 +11,15 @@ const findUser = async (id) => {
     const user = await Users.findByPk(id, {
         attributes: {
             exclude: ['password'],
-        }
+        },
+        include: [
+            {
+                model: Products
+            },
+            {
+                model: Carts
+            }
+        ]
     });
     return user;
 }
