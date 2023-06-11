@@ -8,13 +8,21 @@ const getCart = async (id) => {
         include: [
             {
                 model: Users,
-                attributes: { exclude: ['password'] }
+                attributes: { exclude: ['password', 'createdAt', 'updatedAt'] }
             },
             {
                 model: Products,
                 attributes: { exclude: ['userId']},
                 include: {
-                    model: Users
+                    model: Users,
+                    attributes: {
+                        exclude: ['password', 'createdAt', 'updatedAt']
+                    }
+                },
+                through: {
+                    attributes: {
+                        exclude: ['createdAt', 'updatedAt','productId', 'cartId']
+                    }
                 }
             }
         ]
@@ -29,14 +37,14 @@ const createUserCart = async (data) => {
     return await Carts.create(data);
 }
 
-const getProducts = async (id) => {
+const getProduct = async (id) => {
     return await ProductInCarts.findAll({
         where: {
             [Op.and]: [
                 { cartId: id },
-                { status: false },
+                { ordered: false },
             ],
-        },
+        }
     });
 }
 
@@ -50,13 +58,13 @@ const getProductsInCart = async (cartId) => {
 
 const updateQuantity = async (productId) => {
     const product = await ProductInCarts.findByPk(productId);
-    await product.increment('quantity', { by: 1 });
-return product;
+    await product.increment('quantity', { by: 1 })
+    return;
 }
 
 module.exports = {
     getCart,
-    getProducts,
+    getProduct,
     createUserCart,
     updateTotal,
     updateQuantity,
