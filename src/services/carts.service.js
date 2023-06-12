@@ -1,4 +1,4 @@
-const { createUserCart, updateTotal, getCart, getOneProduct, addProduct, updateQuantity, prepareOrder } = require('../repositories/cart.repository');
+const { createUserCart, updateTotal, getCart, getOneProduct, addProduct, updateQuantity, getProductsInCart, createOrder } = require('../repositories/cart.repository');
 
 class CartServices {
     static async getUserCart(id) {
@@ -43,10 +43,15 @@ class CartServices {
         }
     }
 
-    static async preOrder(cartId) {
+    static async preOrder(cartId, userId) {
         try {
-            const response = await prepareOrder(cartId);
-            return response
+            // obtener el el listado de productos del carrito.
+            const products = await getProductsInCart(cartId);
+            // crear una nueva orden.
+            const newOrder = await createOrder(userId);
+            // agregar los productos al ProductsInOrder.
+            // marcar los productos en ProductsInCarts como comprados o en orden.
+            return products;
         } catch (error) {
             throw error;
         }
