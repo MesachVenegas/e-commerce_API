@@ -9,7 +9,7 @@ router.get('/carts/:id/products', prepareOrder);
 
 router.post('/carts/create/:userId', createCart);
 
-router.put('/carts/:id/products', addProduct);
+router.put('/carts/:cartId/add', addProduct);
 
 router.put('/carts/updated/:id', updateCart);
 
