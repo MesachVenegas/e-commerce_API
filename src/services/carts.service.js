@@ -10,15 +10,6 @@ class CartServices {
         }
     }
 
-    static async getProductsByCart(id) {
-        try {
-            const products = await getProducts(id);
-            return products;
-        } catch (error) {
-            throw error;
-        }
-    }
-
     static async createCart(userId) {
         try {
             console.log(userId);
@@ -44,7 +35,8 @@ class CartServices {
             if(!product){
                 return await addProduct(data);
             }
-            return await updateQuantity(data.productId);
+            const added = await updateQuantity(data.productId);
+            return added;
         } catch (error) {
             throw error;
         }
@@ -53,7 +45,6 @@ class CartServices {
     static async preOrder(cartId) {
         try {
             const response = await prepareOrder(cartId);
-
             return response
         } catch (error) {
             throw error;
