@@ -62,6 +62,14 @@ const updateQuantity = async (productId) => {
     return;
 }
 
+const prepareOrder = async (cartId) => {
+    const products = await ProductInCarts.findAll({
+        where: { cartId }
+    })
+
+    return products;
+}
+
 module.exports = {
     getCart,
     getProduct,
@@ -69,5 +77,6 @@ module.exports = {
     updateTotal,
     updateQuantity,
     addProduct,
-    getProductsInCart
+    getProductsInCart,
+    prepareOrder
 };

@@ -1,4 +1,4 @@
-const { createUserCart, updateTotal, getCart, getProduct, addProduct, updateQuantity, getProducts } = require('../repositories/cart.repository');
+const { createUserCart, updateTotal, getCart, getProduct, addProduct, updateQuantity, getProducts, prepareOrder } = require('../repositories/cart.repository');
 
 class CartServices {
     static async getUserCart(id) {
@@ -45,6 +45,16 @@ class CartServices {
                 return await addProduct(data);
             }
             return await updateQuantity(data.productId);
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    static async preOrder(cartId) {
+        try {
+            const response = await prepareOrder(cartId);
+
+            return response
         } catch (error) {
             throw error;
         }
