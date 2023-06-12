@@ -34,17 +34,17 @@ const getCart = async (req, res, next) => {
 const addProduct = async (req, res, next) => {
     try {
         const { cartId, productId, price, quantity } = req.body;
-        await CartServices.addNewProduct({ cartId, productId, price, quantity });
-        res.status(201).send();
+        const response = await CartServices.addNewProduct({ cartId, productId, price, quantity });
+        res.status(201).json(response);
     } catch (error) {
         next(error);
     }
 }
 
-const getCartProducts = async (req, res, next) => {
+const prepareOrder = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const result = await CartServices.getProductsByCart(id);
+        const result = await CartServices.preOrder(id);
         res.status(200).json(result);
     } catch (error) {
         next(error);
@@ -56,5 +56,5 @@ module.exports = {
     updateCart,
     getCart,
     addProduct,
-    getCartProducts
+    prepareOrder,
 };
