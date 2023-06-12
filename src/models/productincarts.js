@@ -5,7 +5,14 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class ProductInCarts extends Model {
     static associate(models) {
-      // define association here
+      // Muchos productos perteneces a muchos carritos.
+      ProductInCarts.belongsTo(models.Products, {
+        foreignKey: 'productId'
+      });
+      // Muchos productos del carrito pertenecen a muchos carritos.
+      ProductInCarts.belongsTo(models.Carts, {
+        foreignKey: 'cartId'
+      });
     }
   }
   ProductInCarts.init({
