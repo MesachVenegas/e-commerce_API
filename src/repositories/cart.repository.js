@@ -37,17 +37,6 @@ const createUserCart = async (data) => {
     return await Carts.create(data);
 }
 
-const getProduct = async (id) => {
-    return await ProductInCarts.findAll({
-        where: {
-            [Op.and]: [
-                { cartId: id },
-                { ordered: false },
-            ],
-        }
-    });
-}
-
 const updateTotal = async (id, data) => {
     return await Carts.update(data, { where: { id } });
 }
@@ -58,13 +47,32 @@ const getProductsInCart = async (cartId) => {
 
 const updateQuantity = async (productId) => {
     const product = await ProductInCarts.findByPk(productId);
-    await product.increment('quantity', { by: 1 })
-    return;
+    const quantityAdded =  await product.increment('quantity', { by: 1 })
+    return quantityAdded;
 }
 
 const prepareOrder = async (cartId) => {
     const products = await ProductInCarts.findAll({
-        where: { cartId }
+        where: {
+            [Op.and]: [
+                { cartId: cartId },
+                { ordered: false },
+            ]
+        },
+        attributes: {
+            exclude: ['productId', 'cartId', 'createdAt', 'updatedAt']
+        },
+        include: [
+            {
+                model: Products,
+                include: {
+                    model: Users,
+                    attributes: {
+                        exclude: ['password', 'createdAt', 'updatedAt']
+                    }
+                }
+            }
+        ]
     })
 
     return products;
@@ -72,7 +80,6 @@ const prepareOrder = async (cartId) => {
 
 module.exports = {
     getCart,
-    getProduct,
     createUserCart,
     updateTotal,
     updateQuantity,
