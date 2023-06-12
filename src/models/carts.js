@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
                 through: "ProductInCarts",
                 foreignKey: "cartId"
             })
+            // Un carrito tiene muchos productos en el carrito.
+            Carts.hasMany(models.ProductInCarts, {
+                foreignKey: "productId",
+                as: "productInCarts"
+            })
         }
     }
 
