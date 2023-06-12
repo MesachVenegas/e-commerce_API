@@ -33,9 +33,10 @@ const getCart = async (req, res, next) => {
 
 const addProduct = async (req, res, next) => {
     try {
-        const { cartId, productId, price, quantity } = req.body;
-        const response = await CartServices.addNewProduct({ cartId, productId, price, quantity });
-        res.status(201).json(response);
+        const { cartId } = req.params;
+        const { productId, price, quantity } = req.body;
+        await CartServices.addNewProduct({ cartId, productId, price, quantity });
+        res.status(204).send();
     } catch (error) {
         next(error);
     }
