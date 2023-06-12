@@ -12,7 +12,7 @@ const getCart = async (id) => {
             },
             {
                 model: Products,
-                attributes: { exclude: ['userId']},
+                attributes: { exclude: ['userId'] },
                 include: {
                     model: Users,
                     attributes: {
@@ -21,7 +21,7 @@ const getCart = async (id) => {
                 },
                 through: {
                     attributes: {
-                        exclude: ['createdAt', 'updatedAt','productId', 'cartId']
+                        exclude: ['createdAt', 'updatedAt', 'productId', 'cartId']
                     }
                 }
             }
@@ -37,6 +37,17 @@ const createUserCart = async (data) => {
     return await Carts.create(data);
 }
 
+const getOneProduct = async (cart, product) => {
+    return await ProductInCarts.findAll({
+        where: {
+            [Op.and]: [
+                { cartId: cart },
+                { productId: product },
+            ],
+        }
+    });
+}
+
 const updateTotal = async (id, data) => {
     return await Carts.update(data, { where: { id } });
 }
@@ -45,9 +56,16 @@ const getProductsInCart = async (cartId) => {
     return await ProductInCarts.findAll({ where: { cartId } });
 }
 
-const updateQuantity = async (productId) => {
-    const product = await ProductInCarts.findByPk(productId);
-    const quantityAdded =  await product.increment('quantity', { by: 1 })
+const updateQuantity = async (cart, product) => {
+    const productInCart = await ProductInCarts.findOne({
+        where: {
+            [Op.and]: [
+                { cartId: cart },
+                { productId: product },
+            ],
+        }
+    });
+    const quantityAdded = await productInCart.increment('quantity', { by: 1 })
     return quantityAdded;
 }
 
@@ -85,5 +103,6 @@ module.exports = {
     updateQuantity,
     addProduct,
     getProductsInCart,
-    prepareOrder
+    prepareOrder,
+    getOneProduct
 };
