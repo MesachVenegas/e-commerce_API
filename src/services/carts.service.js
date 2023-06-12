@@ -1,4 +1,4 @@
-const { createUserCart, updateTotal, getCart, getProduct, addProduct, updateQuantity, getProducts, prepareOrder } = require('../repositories/cart.repository');
+const { createUserCart, updateTotal, getCart, getOneProduct, addProduct, updateQuantity, prepareOrder } = require('../repositories/cart.repository');
 
 class CartServices {
     static async getUserCart(id) {
@@ -31,11 +31,12 @@ class CartServices {
 
     static async addNewProduct(data) {
         try {
-            const product = await getProduct(data.productId);
-            if(!product){
+            const product = await getOneProduct(data.cartId, data.productId);
+            console.log(product.length);
+            if(product.length === 0){
                 return await addProduct(data);
             }
-            const added = await updateQuantity(data.productId);
+            const added = await updateQuantity(data.cartId, data.productId);
             return added;
         } catch (error) {
             throw error;
