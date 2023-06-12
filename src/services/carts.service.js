@@ -49,9 +49,17 @@ class CartServices {
             const products = await getProductsInCart(cartId);
             // crear una nueva orden.
             const newOrder = await createOrder(userId);
-            // agregar los productos al ProductsInOrder.
-            // marcar los productos en ProductsInCarts como comprados o en orden.
-            return products;
+            for(const product of products) {
+                // agregar los productos al ProductsInOrder.
+                await addProductToOrder({
+                    orderId: newOrder.id,
+                    productId: product.productId,
+                    quantity: product.quantity,
+                    price: product.price,
+                });
+                // marcar los productos en ProductsInCarts como comprados o en orden.
+            }
+            // return newOrder;
         } catch (error) {
             throw error;
         }

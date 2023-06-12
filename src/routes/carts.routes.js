@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/carts/:id', getCart);
 
-router.get('/carts/:id/products', prepareOrder);
+router.get('/carts/:cartId/users/:userId/', prepareOrder);
 
 router.post('/carts/create/:userId', createCart);
 

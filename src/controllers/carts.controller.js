@@ -44,8 +44,8 @@ const addProduct = async (req, res, next) => {
 
 const prepareOrder = async (req, res, next) => {
     try {
-        const { id } = req.params;
-        const result = await CartServices.preOrder(id);
+        const { cartId, userId } = req.params;
+        const result = await CartServices.preOrder(cartId, userId);
         res.status(200).json(result);
     } catch (error) {
         next(error);
