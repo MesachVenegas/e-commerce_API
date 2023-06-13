@@ -5,9 +5,9 @@ const router = Router();
 
 router.get('/carts/:id', getCart);
 
-router.get('/carts/:cartId/users/:userId/', prepareOrder);
-
 router.post('/carts/create/:userId', createCart);
+
+router.post('/carts/:cartId/users/:userId/', prepareOrder);
 
 router.put('/carts/:cartId/add', addProduct);
 
