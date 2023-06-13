@@ -3,18 +3,11 @@ const { Op } = require('sequelize');
 
 
 const initOrder = async (userId) => {
-    const result = Orders.create(userId);
+    const order = await Orders.create({ userId })
+    return order;
 }
 
-const orderedProducts = async (cartId) => {
-    console.log(productId);
-    const result = await ProductInCarts.update({ ordered: true }, {
-        where: { cartId }
-    })
-    return result;
-}
 
 module.exports = {
     initOrder,
-    orderedProducts,
 };
