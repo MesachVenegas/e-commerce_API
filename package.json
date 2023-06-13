@@ -4,12 +4,14 @@
     "description": "Aplicar todos los conocimientos vistos en clase para levantar esta API desde 0,\r mas consideraciones de seguridad y para lanzar a producción en Railway / render.",
     "main": "index.js",
     "scripts": {
-        "start": "node ./src/app.js",
+        "start": "npm run migrate && npm run init",
+        "init": "node ./src/app.js",
         "dev": "nodemon ./src/app.js",
         "prepare": "npx sequelize-cli init",
-        "database": "npx sequelize-cli db:create ",
-        "drop": "npx sequelize-cli db:drop",
-        "migration": "npx sequelize-cli db:migrate"
+        "create": "npx sequelize-cli db:create ",
+        "migrate": "npx sequelize-cli db:migrate",
+        "seeds": "npx sequelize-cli db:seed:all",
+        "drop": "npx sequelize-cli db:drop"
     },
     "keywords": [],
     "author": "",
