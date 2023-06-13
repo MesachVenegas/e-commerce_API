@@ -3,6 +3,6 @@ const { Router } = require('express')
 
 const router = Router();
 
-router.post('/orders/create', createOrder);
+router.post('/orders/create/:userId', createOrder);
 
 module.exports = router
