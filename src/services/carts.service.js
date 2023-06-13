@@ -58,6 +58,7 @@ class CartServices {
                     price: product.price,
                 });
                 // marcar los productos en ProductsInCarts como comprados o en orden.
+                await checkProduct(product.productId);
             }
             // return newOrder;
         } catch (error) {
