@@ -1,15 +1,16 @@
-const { uploadProductImgs} = require('../utils/imgLoader');
 const { newItemData, getProducts, loadThumbail, editProducts } = require('../controllers/products.controller');
+const tokenAuth = require('../middlewares/auth.middleware');
+const { uploadProductImgs} = require('../utils/imgLoader');
 const { Router } = require('express')
 
 const router = Router();
 
-router.post('/products', newItemData);
+router.post('/products', tokenAuth, newItemData);
 
-router.put('/products/:id/images', uploadProductImgs, loadThumbail)
+router.put('/products/:id/images', tokenAuth, uploadProductImgs, loadThumbail)
 
-router.put('/products/:id', editProducts);
+router.put('/products/:id', tokenAuth, editProducts);
 
-router.get('/products', getProducts);
+router.get('/products', tokenAuth, getProducts);
 
 module.exports = router

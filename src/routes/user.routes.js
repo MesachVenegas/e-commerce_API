@@ -11,7 +11,7 @@ router.post('/users', validateCreation, createUser);
 
 router.post('/users/login', logIn);
 
-router.get('/users/:id', getUser);
+router.get('/users/:id', tokenAuth, getUser);
 
 router.delete('/users/:id', tokenAuth, userDelete);
 
