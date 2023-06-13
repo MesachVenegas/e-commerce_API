@@ -1,4 +1,7 @@
-const { createUserCart, updateTotal, getCart, getOneProduct, addProduct, updateQuantity, getProductsInCart, createOrder } = require('../repositories/cart.repository');
+const { initOrder } = require('../repositories/orders.repository');
+const {
+    createUserCart, updateTotal, getCart, getOneProduct, addProduct, updateQuantity, getProductsInCart, addProductToOrder, checkProduct
+} = require('../repositories/cart.repository');
 
 class CartServices {
     static async getUserCart(id) {
@@ -33,7 +36,7 @@ class CartServices {
         try {
             const product = await getOneProduct(data.cartId, data.productId);
             console.log(product.length);
-            if(product.length === 0){
+            if (product.length === 0) {
                 return await addProduct(data);
             }
             const added = await updateQuantity(data.cartId, data.productId);
@@ -48,8 +51,8 @@ class CartServices {
             // obtener el el listado de productos del carrito.
             const products = await getProductsInCart(cartId);
             // crear una nueva orden.
-            const newOrder = await createOrder(userId);
-            for(const product of products) {
+            const newOrder = await initOrder(userId);
+            for (const product of products) {
                 // agregar los productos al ProductsInOrder.
                 await addProductToOrder({
                     orderId: newOrder.id,
@@ -58,7 +61,7 @@ class CartServices {
                     price: product.price,
                 });
                 // marcar los productos en ProductsInCarts como comprados o en orden.
-                await checkProduct(product.productId);
+                await checkProduct(cartId, product.productId);
             }
             // return newOrder;
         } catch (error) {
