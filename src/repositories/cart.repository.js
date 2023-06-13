@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Carts, Users, Products, ProductInCarts, Orders } = require('../models');
+const { Carts, Users, Products, ProductInCarts, ProductInOrders } = require('../models');
 
 const getCart = async (id) => {
     return await Carts.findAll({
@@ -96,9 +96,22 @@ const getCartProducts = async (cartId) => {
     return products;
 }
 
-const createOrder = async (userId) =>{
-    const order = await Orders.create({ userId })
-    return order;
+const addProductToOrder = async (product) => {
+    // const orderProduct = product;
+    const orderProduct = await ProductInOrders.create(product);
+    return orderProduct;
+}
+
+const checkProduct = async (cartId, productId) => {
+    const checked = await ProductInCarts.findOne({ ordered: true }, {
+        where: {
+            [Op.and]: [
+                { cartId },
+                { productId },
+            ]
+        }
+    })
+    return checked;
 }
 
 module.exports = {
@@ -110,5 +123,6 @@ module.exports = {
     getProductsInCart,
     getCartProducts,
     getOneProduct,
-    createOrder
+    addProductToOrder,
+    checkProduct
 };
