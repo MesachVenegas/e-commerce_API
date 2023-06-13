@@ -11,6 +11,6 @@ router.put('/products/:id/images', tokenAuth, uploadProductImgs, loadThumbail)
 
 router.put('/products/:id', tokenAuth, editProducts);
 
-router.get('/products', tokenAuth, getProducts);
+router.get('/products', getProducts);
 
 module.exports = router
