@@ -17,9 +17,10 @@ const validateNewProduct = [
         .trim().notEmpty().withMessage('price field cannot be empty')
         .isNumeric().withMessage('price field must be a number'),
     check('stock', 'error validating stock field')
+        .optional()
         .trim().notEmpty().withMessage('stock field cannot be empty')
-        .isNumeric().withMessage('stock field must be a number')
-        .matches(/^[0-9]+$/).withMessage('stock field only contains numbers'),
+        .isNumeric().withMessage('stock field must be a number'),
+        // .matches(/^[0-9]+$/).withMessage('stock field only contains numbers'),
     check('available', 'error validating available field')
         .optional()
         .isBoolean().withMessage('available field must be true or false'),
