@@ -44,22 +44,33 @@ class UserServices {
         }
     }
 
-    static async userLogin(sessionData) {
+    static async userLogin(reqEmail, reqPassword, next) {
         try {
-            const { reqEmail, reqPassword } = sessionData;
+            //  Buscar si el usuario con el email existe.
             const user = await UserRepository.login(reqEmail);
-
+            // Si no existe se lanza error.
             if (!user) {
-                throw new Error('The user could not be found')
+                return next({
+                    status: 404,
+                    error: "Invalid email",
+                    message: 'The user could not be found or not exist'
+                })
             }
-
+            // Verificamos que la contraseña ingresada coincida con la almacenada.
             const validPass = await bcrypt.compare(reqPassword, user.password);
-
+            // Si no lanzamos error de password incorrecta.
             if (!validPass) {
-                throw new Error('The password does not match');
+                return next({
+                    status: 404,
+                    error: "Invalid password",
+                    message: 'The password does not match'
+                });
             }
+            // Extracion de datos para la generacion del token.
             const { id, username, email, url, registeredAt, updatedAt } = user;
+            // Creamos los datos a retornar como respuesta con el access-token.
             const userData = { id, username, email, url, registeredAt, updatedAt };
+            // Generacion del access-token.
             const token = jwt.sign(userData, process.env.JWT_KEYWORD, {
                 algorithm: process.env.JWT_ALGORITHM,
                 expiresIn: '1h'
