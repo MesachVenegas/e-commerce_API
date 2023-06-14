@@ -7,7 +7,7 @@ module.exports = {
       {
         username: 'Mesach Venegas',
         email: 'mesach.venegas@hotmail.com',
-        password: '123456',
+        password: '$2b$10$281EKT279pV6EsUS4kmAg.taqJl7jGB9oy7WEK4mZnSlIL8w5U306',
         createdAt: new Date(),
         updatedAt: new Date()
       },
