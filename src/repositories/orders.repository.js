@@ -40,8 +40,44 @@ const getUserOrders = async (userId) => {
     return orders;
 }
 
+const getProductsInOrder = async (orderId) => {
+    return await ProductInOrders.findAll({ where: { orderId } })
+}
+
+const findOrderById = async (orderId) => {
+    const order = await Orders.findByPk(orderId);
+    return order;
+}
+
+const completeProduct = async (orderId, productId) => {
+    const product = await ProductInOrders.findOne({
+        where: {
+            [Op.and]: [
+                { orderId },
+                { productId }
+            ]
+        }
+    });
+
+    const bought = await product.update({
+        status: true
+    })
+    return bought;
+}
+
+const completeOrder = async (orderId) => {
+    const order = await findOrderById(orderId);
+    const complete = await order.update({
+        isCompleted: true
+    });
+    return complete;
+}
 
 module.exports = {
     initOrder,
-    getUserOrders
+    getUserOrders,
+    completeProduct,
+    findOrderById,
+    completeOrder,
+    getProductsInOrder
 };
