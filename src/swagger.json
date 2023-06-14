@@ -9,7 +9,7 @@
         "/users": {
             "post": {
                 "summary": "Registro de nuevos usuarios",
-                "description": "Para poder registrar un nuevo usuario es necesario ingresar un email valido y una contraseña con un mínimo de 6 caracteres, esta información es obligatoria",
+                "description": "Para poder registrar un nuevo usuario es necesario ingresar un email con formato valido y una contraseña con un mínimo de 6 caracteres, esta información es obligatoria",
                 "tags": ["users"],
                 "requestBody": {
                     "content": {
@@ -17,7 +17,40 @@
                             "schema": {"$ref": "#/components/schemas/register" }
                         }
                     }
+                },
+                "responses": {
+                    "201": {
+                        "description": "The user was created correctly"
+                    },
+                    "400": {
+                        "description": "Missing content on request body",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Validation Error"
+                                        },
+                                        "message": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "string",
+                                                "example": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "summary": ""
             }
         }
     },
