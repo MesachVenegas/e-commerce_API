@@ -20,8 +20,19 @@ const getAllUserOrders = async (req, res, next) => {
     }
 }
 
+const finishOrder = async (req, res, next) => {
+    try {
+        const { orderId } = req.params;
+        await OrderServices.completeOrder(orderId);
+        res.status(204).send();
+    } catch (error) {
+        next(error);
+    }
+}
+
 
 module.exports = {
     createOrder,
-    getAllUserOrders
+    getAllUserOrders,
+    finishOrder,
 };
