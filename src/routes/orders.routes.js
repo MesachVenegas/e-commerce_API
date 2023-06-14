@@ -6,8 +6,8 @@ const router = Router();
 
 router.post('/orders/create/:userId', tokenAuth, createOrder);
 
-router.get('/orders/users/:userId', getAllUserOrders);
+router.get('/orders/users/:userId', tokenAuth, getAllUserOrders);
 
-router.put('/orders/complete/:orderId', finishOrder)
+router.put('/orders/complete/:orderId', tokenAuth, finishOrder)
 
 module.exports = router
