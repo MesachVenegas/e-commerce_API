@@ -38,7 +38,6 @@ class ProductServices {
             const data = {};
             for(let field in fields) {
                 if(fields[field].toString().length > 0){
-                    console.log(field)
                     data[field] = fields[field]
                 }
             }
