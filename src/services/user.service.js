@@ -50,21 +50,13 @@ class UserServices {
             const user = await UserRepository.login(reqEmail);
 
             if (!user) {
-                throw new Error({
-                    status: 404,
-                    error: 'user not found',
-                    message: 'The user could not be found'
-                })
+                throw new Error('The user could not be found')
             }
 
             const validPass = await bcrypt.compare(reqPassword, user.password);
 
             if (!validPass) {
-                throw new Error({
-                    status: 400,
-                    name: "Invalid password",
-                    message: 'The password does not match'
-                });
+                throw new Error('The password does not match');
             }
             const { id, username, email, url, registeredAt, updatedAt } = user;
             const userData = { id, username, email, url, registeredAt, updatedAt };
