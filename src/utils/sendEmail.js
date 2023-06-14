@@ -52,8 +52,6 @@ const sendWelcomEmail = async (email, data) => {
     ];
 
     sendNewEmail(email, doc, attachments, subject);
-}
-
-module.exports = {
-    sendWelcomEmail
 };
+
+module.exports = sendWelcomEmail;
