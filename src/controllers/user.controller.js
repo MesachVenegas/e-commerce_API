@@ -33,7 +33,7 @@ const userDelete = async (req, res, next) => {
 const logIn = async (req, res, next) => {
     try {
         const { email, password } = req.body;
-        const data = await UserService.userLogin({ reqEmail: email, reqPassword: password });
+        const data = await UserService.userLogin(email, password, next);
         res.status(200).json(data);
     } catch (error) {
         next(error);
