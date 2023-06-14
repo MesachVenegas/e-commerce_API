@@ -1,12 +1,12 @@
 const { initOrder } = require('../repositories/orders.repository');
 const {
-    createUserCart, updateTotal, getCart, getOneProduct, addProduct, updateQuantity, getProductsInCart, addProductToOrder, checkProduct
+    createUserCart, updateTotal, getOneProduct, addProduct, updateQuantity, getProductsInCart, addProductToOrder, checkProduct, getCartProducts
 } = require('../repositories/cart.repository');
 
 class CartServices {
     static async getUserCart(id) {
         try {
-            const response = await getCart(id);
+            const response = await getCartProducts(id);
             return response;
         } catch (error) {
             throw error;
