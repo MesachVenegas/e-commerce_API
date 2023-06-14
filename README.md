@@ -34,7 +34,7 @@ mas consideraciones de seguridad y para lanzar a producción en Railway / render
     - [x] El carrito cambia a status ‘purchased’
     - [x] Ver todas las ordenes del usuario
     - [x] Mandar un correo cuando un usuario crea una cuenta y
-    - [ ] cuando realiza una compra
+    - [x] cuando realiza una compra
     - [ ] Tu api debe tener una página de documentación con los endpoints que usas y que se pueda probar, incluyendo los campos requeridos para las peticiones y una sección para incluir el token de autenticación si es necesario. (swagger)
 
 4. Reto opcional
