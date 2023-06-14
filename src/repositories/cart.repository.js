@@ -97,13 +97,12 @@ const getCartProducts = async (cartId) => {
 }
 
 const addProductToOrder = async (product) => {
-    // const orderProduct = product;
     const orderProduct = await ProductInOrders.create(product);
     return orderProduct;
 }
 
 const checkProduct = async (cartId, productId) => {
-    const checked = await ProductInCarts.findOne({ ordered: true }, {
+    const products = await ProductInCarts.findOne({
         where: {
             [Op.and]: [
                 { cartId },
@@ -111,6 +110,7 @@ const checkProduct = async (cartId, productId) => {
             ]
         }
     })
+    const checked =  await products.update({ ordered: true });
     return checked;
 }
 
