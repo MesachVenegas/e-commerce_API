@@ -5,7 +5,14 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class ProductInOrders extends Model {
     static associate(models) {
-      // define association here
+      // Uno o mas ordenes perteneces a una o mas ordenes.
+      ProductInOrders.belongsTo(models.Orders, {
+        foreignKey: 'orderId'
+      });
+      // Una orden pertenece a uno o mas productos.
+      ProductInOrders.belongsTo(models.Products, {
+        foreignKey: 'productId'
+      })
     }
   }
   ProductInOrders.init({

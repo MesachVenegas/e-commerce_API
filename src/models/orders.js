@@ -7,9 +7,19 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       // Una orden le pertenece a un usuario.
-      Orders.belongsTo(models.Users, { foreignKey: "userId", targetKey: "id", })
+      Orders.belongsTo(models.Users, {
+        foreignKey: "userId",
+        targetKey: "id",
+      });
       // Una orden tiene muchos productos.
-      Orders.belongsToMany(models.Products, { through: "ProductInCarts", foreignKey: "orderId" })
+      Orders.belongsToMany(models.Products, {
+        through: "ProductInCarts",
+        foreignKey: "orderId"
+      });
+      //  Una orden tiene muchos productos en la orden.
+      Orders.hasMany(models.ProductInOrders, {
+        foreignKey: "orderId"
+      });
     }
   }
   Orders.init({
