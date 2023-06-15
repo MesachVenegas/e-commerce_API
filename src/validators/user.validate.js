@@ -34,8 +34,23 @@ const validateNewUsername = [
     }
 ]
 
+const loginValidate = [
+    check('email', 'error on email field validation')
+        .exists().withMessage('The username field is required')
+        .trim().notEmpty().withMessage('The username field cannot be empty'),
+    check('password', 'error on password field validation')
+        .exists().withMessage('The password field is required')
+        .trim().notEmpty().withMessage('The password field cannot be empty')
+        .isString().withMessage('The password field must be a string')
+        .isLength({ min: '6', max: '16' }).withMessage('The password field must be between 6 and 16 characters'),
+    (req, res, next) => {
+        fieldValidate(req, res, next);
+    }
+]
+
 
 module.exports = {
     validateCreation,
+    loginValidate,
     validateNewUsername,
 };
