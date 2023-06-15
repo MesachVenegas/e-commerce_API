@@ -3,18 +3,22 @@
     "info": {
         "title": "E-commerce API",
         "description": "API para la creación de una plataforma de tienda digital mejor conocidas como e-commerce",
-        "version" : "1.0.0"
+        "version": "1.0.0"
     },
     "paths": {
         "/users": {
             "post": {
                 "summary": "Registro de nuevos usuarios",
                 "description": "Para poder registrar un nuevo usuario es necesario ingresar un email con formato valido y una contraseña con un mínimo de 6 caracteres, esta información es obligatoria",
-                "tags": ["users"],
+                "tags": [
+                    "users"
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
-                            "schema": {"$ref": "#/components/schemas/register" }
+                            "schema": {
+                                "$ref": "#/components/schemas/register"
+                            }
                         }
                     }
                 },
@@ -27,20 +31,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "object",
-                                    "properties": {
-                                        "name": {
-                                            "type": "string",
-                                            "example": "Validation Error"
-                                        },
-                                        "message": {
-                                            "type": "array",
-                                            "items": {
-                                                "type": "string",
-                                                "example": "string"
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#/components/schemas/400"
                                 }
                             }
                         }
@@ -50,9 +41,80 @@
         },
         "/users/login": {
             "post": {
-                "summary": ""
+                "summary": "Login de acceso a Usuarios",
+                "description": "Para poder logear en la aplicación es necesario ingresar un email y password validos",
+                "tags": [
+                    "users"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/login"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Credentials was verify correctly and provide a access-token with user data.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer",
+                                            "example": 1
+                                        },
+                                        "username": {
+                                            "type": "string",
+                                            "example": "Mesach Venegas"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "mesach.venegas@hotmail.com"
+                                        },
+                                        "updatedAt": {
+                                            "type": "date",
+                                            "example": "2023-06-14T08:16:26.779Z"
+                                        },
+                                        "token": {
+                                            "type": "string",
+                                            "example": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlcm5hbWUiOiJNZXNhY2ggVmVuZWdhcyIsImVtYWlsIjoibWVzYWNoLnZlbmVnYXNAaG90bWFpbC5jb20iLCJ1cGRhdGVkQXQiOiIyMDIzLTA2LTE0VDA4OjE2OjI2Ljc3OVoiLCJpYXQiOjE2ODY3MzA2MDMsImV4cCI6MTY4NjczNDIwM30.W56HttrJnITVVLnLIhdfk2S374a3EFlXouCCBVDImV6fjk0Imy8y4Zp4epwpEWfiLb_119q1KTUre-kLzSJK3w"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Missing content on request body",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref":"#/components/schemas/400"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "User Not Found, Invalid email, or password don't match",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/404"
+                                }
+                            }
+                        }
+                    }
+                }
             }
-        }
+        },
+        "/users/:id/profile": {},
+        "/users/:id": {},
+        "/users/:id/avatar": {},
+        "/users/:id/delete": {}
     },
     "components": {
         "schemas": {
@@ -70,6 +132,48 @@
                     "password": {
                         "type": "string",
                         "example": "Una12345!"
+                    }
+                }
+            },
+            "login": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "example": "mesach.venegas@hotmail.com"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "123456"
+                    }
+                }
+            },
+            "400":{
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Validation Error"
+                    },
+                    "message": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "example": "string"
+                        }
+                    }
+                }
+            },
+            "404": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type":"string",
+                        "example": "Error"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "The user could not be found or not exist"
                     }
                 }
             }
